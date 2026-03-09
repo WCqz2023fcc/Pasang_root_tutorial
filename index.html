@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Redmi K40高通9008模式解BL</title>
+
+<!-- Markdown 渲染 -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- LaTeX 公式 -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* 土黄色卡片 */
+#container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #d9b876;
+  color: #000;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* 内容里文字变白 */
+#content {
+  color: #fff;
+}
+
+/* 链接蓝色 */
+#content a {
+  color: #42a5f5;
+  text-decoration: none;
+}
+
+#content a:hover {
+  text-decoration: underline;
+}
+
+#content h1,
+#content h2,
+#content h3 {
+  margin: 1em 0 0.6em;
+}
+
+#content p,
+#content ul,
+#content ol {
+  margin: 0.6em 0;
+}
+
+#content li {
+  margin: 0.3em 0;
+}
+</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="content"></div>
+  </div>
+
+  <script>
+    fetch('tutorial.md')
+      .then(res => res.text())
+      .then(markdown => {
+        document.getElementById('content').innerHTML = marked.parse(markdown);
+      })
+  </script>
+</body>
+</html>
