@@ -2,84 +2,188 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>Redmi K40高通9008模式解BL</title>
-
-<!-- Markdown 渲染 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redmi K40 高通9008解BL教程</title>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-<!-- LaTeX 公式 -->
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+:root {
+  --bg-main: #0f1419;
+  --card-bg: #d9b876;
+  --text-main: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #42a5f5;
+  --warning: #ffc107;
+  --code-bg: #161b22;
+  --code-text: #c9d1d9;
+}
 body {
-  background: #111;
-  color: #fff;
-  font-family: system-ui, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
-  padding: 20px;
 }
-
-/* 土黄色卡片 */
-#container {
-  max-width: 800px;
+/* 顶部导航栏（Magisk 风极简） */
+header {
+  background: rgba(15, 20, 25, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #30363d;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+/* 主容器：居中+最大宽度限制 */
+.container {
+  max-width: 900px;
   margin: 40px auto;
-  background: #d9b876;
-  color: #000;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  padding: 0 20px;
 }
-
-/* 内容里文字变白 */
+/* 你的土黄色卡片：圆角+阴影+内边距优化 */
+.tutorial-card {
+  background: var(--card-bg);
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  padding: 32px;
+  margin-bottom: 32px;
+}
+/* 内容区文字颜色适配卡片 */
 #content {
+  color: #2d2d2d;
+  font-size: 15px;
+}
+/* 标题层级（Magisk 风简洁） */
+#content h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+  border-bottom: 2px solid #b9945f;
+  padding-bottom: 10px;
+}
+#content h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 28px 0 12px;
+  color: #fff;
+  padding-left: 10px;
+  border-left: 4px solid #b9945f;
+}
+#content h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 20px 0 8px;
   color: #fff;
 }
-
-/* 链接蓝色 */
-#content a {
-  color: #42a5f5;
-  text-decoration: none;
-}
-
-#content a:hover {
-  text-decoration: underline;
-}
-
-#content h1,
-#content h2,
-#content h3 {
-  margin: 1em 0 0.6em;
-}
-
+/* 段落/列表间距 */
 #content p,
 #content ul,
 #content ol {
-  margin: 0.6em 0;
+  margin: 12px 0;
 }
-
+#content ul,
+#content ol {
+  padding-left: 24px;
+}
 #content li {
-  margin: 0.3em 0;
+  margin: 8px 0;
+}
+/* 代码块（Magisk 风深色高亮） */
+#content code {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.9em;
+}
+#content pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  line-height: 1.5;
+}
+#content pre code {
+  background: transparent;
+  padding: 0;
+}
+/* 警告块（Magisk 风醒目提示） */
+#content blockquote {
+  background: rgba(255, 193, 7, 0.15);
+  border-left: 4px solid var(--warning);
+  padding: 12px 16px;
+  border-radius: 0 6px 6px 0;
+  color: #fff;
+  font-weight: 500;
+  margin: 16px 0;
+}
+/* 表格（Magisk 风简洁） */
+#content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+#content th,
+#content td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#content th {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  color: #fff;
+}
+#content tr:last-child td {
+  border-bottom: none;
+}
+/* 页脚（Magisk 风极简） */
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid #30363d;
 }
 </style>
 </head>
-
 <body>
-  <div id="container">
+<header>
+  <h1>Redmi K40 9008 解BL教程</h1>
+</header>
+<div class="container">
+  <div class="tutorial-card">
     <div id="content"></div>
   </div>
-
-  <script>
-    fetch('tutorial.md')
-      .then(res => res.text())
-      .then(markdown => {
-        document.getElementById('content').innerHTML = marked.parse(markdown);
-      })
-  </script>
+</div>
+<footer>
+</footer>
+<script>
+fetch('tutorial.md')
+  .then(res => res.text())
+  .then(md => {
+    document.getElementById('content').innerHTML = marked.parse(md);
+  })
+  .catch(err => {
+    document.getElementById('content').innerHTML = `<p style="color: #ff6b6b; font-weight: bold;">⚠️ 教程加载失败，请检查 tutorial.md 文件是否存在</p>`;
+  });
+</script>
 </body>
 </html>
